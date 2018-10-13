@@ -35,7 +35,7 @@
                 }
             }
         };
-        httpRequest.open("POST", "./WeatherData?="+document.forms["weatherForm"]["zip"].value, true);
+        httpRequest.open("GET", "./WeatherData?="+document.forms["weatherForm"]["zip"].value, true);
         httpRequest.send();
     }
 </script>
