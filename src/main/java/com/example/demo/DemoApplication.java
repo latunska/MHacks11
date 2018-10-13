@@ -18,10 +18,12 @@ public class DemoApplication {
   }
   @GetMapping("/WeatherData")
   public String getWeatherData(){
+      Sounder sounder = new Sounder();
 	  RestTemplate restTemplate = new RestTemplate();
 	  Weather weather = restTemplate.getForObject("http://api.openweathermap.org/data/2.5/forecast?zip=48340&APPID=cf32c0bcc723a965df94aeb04388c1ee", Weather.class);
 	  double temp = weather.getWeatherList().get(0).getMain().getTemp();
 	  double windSpeed = weather.getWeatherList().get(0).getWind().getSpeed();
-    return "This is Data"+weather.getCod()+"this might work, temp: "+temp+" wind: "+windSpeed;
+	  System.out.println(sounder.getMusicLink(sounder.getMusicSettings(weather.getWeatherList().get(0))));
+    return sounder.getMusicLink(sounder.getMusicSettings(weather.getWeatherList().get(0)));
   }
 }
