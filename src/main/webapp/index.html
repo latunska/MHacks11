@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    function myFunction(){
+        httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = function(){
+            if (httpRequest.status === 200) {
+                alert(httpRequest.responseText);
+            }
+        };
+        httpRequest.open("GET", "./WeatherData", true);
+        httpRequest.send();
+    }
+</script>
+<body>
+<button type="button" onclick="myFunction()">Click Me!</button>
+<audio controls>
+    <source src="https://www.wolframcloud.com/objects/user-a13d29f3-43bf-4b00-8e9b-e55639ecde19/NKMMusic?id=NKM-G-13-61-4561554-0-10564-272-109-4-2773-72-0-27-169-1-1-0-0-0-0-0-0-0" type="audio/mpeg">
+    Your browser does not support the audio tag.
+</audio>
+</body>
+</html>

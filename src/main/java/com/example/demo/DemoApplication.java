@@ -12,10 +12,10 @@ public class DemoApplication {
     SpringApplication.run(DemoApplication.class, args);
   }
 
-  @GetMapping("/")
-  public String hello() {
+  //@GetMapping("/")
+  /*public String hello() {
     return "New Music Coming Soon!";
-  }
+  }*/
   @GetMapping("/WeatherData")
   public String getWeatherData(){
       Sounder sounder = new Sounder();

@@ -82,7 +82,8 @@ public class Sounder {
 
 		//System.out.println(weather.weather);
 
-
+		//random seed
+		settings.seed = (int)((Math.random() * ((16383 - 8193) + 1)) + 8193);
 		return settings;
 	}
 
