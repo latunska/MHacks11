@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    function myFunction(){
+        httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = function(){
+            if (httpRequest.status === 200) {
+                if(httpRequest.responseText !== ""){
+                    var audio = document.getElementById("audio");
+                    var source = document.getElementById("linky");
+                    source.src = httpRequest.responseText;
+                    audio.load();
+                    audio.play();
+                }
+            }
+        };
+        httpRequest.open("GET", "./WeatherData", true);
+        httpRequest.send();
+    }
+    function postWeatherForm(){
+        httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = function(){
+            if (httpRequest.status === 200) {
+                if(httpRequest.responseText !== ""){
+                    alert(httpRequest.responseText);
+                    var audio = document.getElementById("audio");
+                    var source = document.getElementById("linky");
+                    source.src = httpRequest.responseText;
+                    audio.load();
+                    audio.play();
+                }
+            }
+        };
+        httpRequest.open("GET", "./WeatherData?="+document.forms["weatherForm"]["zip"].value, true);
+        httpRequest.send();
+    }
+</script>
+<body>
+<button type="button" onclick="myFunction()">Click Me!</button>
+<audio id="audio" controls loop="true">
+    <source id="linky" src="" type="audio/mpeg">
+    Your browser does not support the audio tag.
+</audio>
+<form id="weatherForm" action="/WeatherData?=">
+    Zip Code: <input type="text" name="zip"><br>
+</form>
+<button onclick="javascript:postWeatherForm();">Connect to Server</button>
+</body>
+</html>
