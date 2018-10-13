@@ -9,11 +9,18 @@ public class WeatherList {
 	public WeatherList() {
 	}
 	private int dt;
+	private List<WeatherWeather> weather;
 	private WeatherMain main;
 	private WeatherRain rain;
 	private WeatherRain snow;
 	private WeatherCloud clouds;
 	private WeatherWind wind;
+	public List<WeatherWeather> getWeather(){
+		return weather;
+	}
+	public void setWeather(List<WeatherWeather> weather){
+		this.weather=weather;
+	}
 	public WeatherMain getMain(){
 		return main;
 	}
