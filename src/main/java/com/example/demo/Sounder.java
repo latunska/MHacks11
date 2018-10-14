@@ -22,7 +22,7 @@ public class Sounder {
 		MusicSettings settings = new MusicSettings();
 
 		// temperature -> tempo
-		settings.tempo = (int)((weather.getMain().getTemp() -244)/(333-244)*130+50);
+		settings.tempo = (int)((weather.getMain().getTemp() -250)/(333-250)*130+50);
 		double precip=0;
 		if(weather.getSnow()!=null) {
 			precip = weather.getSnow().getThreeHours();
@@ -31,7 +31,7 @@ public class Sounder {
 			precip += weather.getRain().getThreeHours();
 		}
 
-		settings.pitch = (int) ((10.0 - precip) / 10.0 * 48.0 + 24.0) < 24 ? 24 : (int) ((10.0 - precip) / 10.0 * 48.0 + 24.0);
+		settings.pitch = (int) ((0.2 - precip) / 0.2 * 48.0 + 24.0) < 24 ? 24 : (int) ((0.2 - precip) / 0.2 * 48.0 + 24.0);
 
 		settings.duration = (int)(settings.tempo*2.5);
 
