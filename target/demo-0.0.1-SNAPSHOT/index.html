@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     function myFunction(){
         httpRequest = new XMLHttpRequest();
@@ -35,8 +36,16 @@
                 }
             }
         };
-        httpRequest.open("GET", "./WeatherData?="+document.forms["weatherForm"]["zip"].value, true);
-        httpRequest.send();
+        $.ajaxSetup({ cache: false });
+        $.get("/WeatherData?zip="+document.forms["weatherForm"]["zip"].value,function( data ) {
+            var audio = document.getElementById("audio");
+            var source = document.getElementById("linky");
+            source.src = data;
+            audio.load();
+            audio.play();
+        });
+        //httpRequest.open("GET", "./WeatherData?="+document.forms["weatherForm"]["zip"].value, true);
+        //httpRequest.send();
     }
 </script>
 <body>
