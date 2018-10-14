@@ -14,9 +14,7 @@ public class Sounder {
 
 	}
 
-	public int getWeather(Weather weather){
-		return weather.getWeatherList().get(0).getWeather().get(0).getId();
-	}
+
 
 	public MusicSettings getMusicSettings(WeatherList weather) {
 		MusicSettings settings = new MusicSettings();
