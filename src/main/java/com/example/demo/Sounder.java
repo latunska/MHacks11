@@ -20,10 +20,16 @@ public class Sounder {
 
 		// temperature -> tempo
 		settings.tempo = (int)((weather.getMain().getTemp() -244)/(333-244)*130+50);
-		//
-		if(weather.getRain()!=null) {
-			settings.pitch = (int) ((10.0 - weather.getRain().getThreeHours()) / 10.0 * 48.0 + 24.0) < 24 ? 24 : (int) ((10.0 - weather.getRain().getThreeHours()) / 10.0 * 48.0 + 24.0);
+		double precip=0;
+		if(weather.getSnow()!=null) {
+			precip = weather.getSnow().getThreeHours();
 		}
+		if(weather.getRain()!=null) {
+			precip += weather.getRain().getThreeHours();
+		}
+
+		settings.pitch = (int) ((10.0 - precip) / 10.0 * 48.0 + 24.0) < 24 ? 24 : (int) ((10.0 - precip) / 10.0 * 48.0 + 24.0);
+
 		settings.duration = (int)(settings.tempo*2.5);
 
 		settings.instruments[0]=1;
