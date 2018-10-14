@@ -22,7 +22,7 @@ public class Sounder {
 		MusicSettings settings = new MusicSettings();
 
 		// temperature -> tempo
-		settings.tempo = (int)((weather.getMain().getTemp() -250)/(333-250)*130+50);
+		settings.tempo = (int)((weather.getMain().getTemp() -250)/(350-250)*130+50);
 		double precip=0;
 		if(weather.getSnow()!=null) {
 			precip = weather.getSnow().getThreeHours();
@@ -31,17 +31,24 @@ public class Sounder {
 			precip += weather.getRain().getThreeHours();
 		}
 
-		settings.pitch = (int) ((0.2 - precip) / 0.2 * 48.0 + 24.0) < 24 ? 24 : (int) ((0.2 - precip) / 0.2 * 48.0 + 24.0);
+		settings.pitch = (int) ((0.2 - precip) / 0.2 * 24.0 + 12.0) < 12 ? 12 : (int) ((0.2 - precip) / 0.2 * 24.0 + 12.0);
+		settings.pitch += (int) ((100 - weather.getClouds().getAll()) / 100 * 24.0 + 12.0) < 12 ? 12 : (int) ((100 - weather.getClouds().getAll()) / 100 * 24.0 + 12.0);
 
 		settings.duration = (int)(settings.tempo*2.5);
 
-		settings.instruments[0]=1;
-		settings.instruments[1]=1;
+		settings.instruments[0] = 1;
+		settings.instruments[1] = 1;
+
+		if(weather.getClouds().getAll() > 50) {
+			settings.instruments[0]=20;
+			settings.instruments[1]=570;
+			settings.tones = 2911;
+		}
 
 		/*if(weather.weather.contains("rain"))
 			settings.tones = 2903;
 */
-		if(weather.getWind().getSpeed() > 15)
+		if(weather.getWind().getSpeed() > 5)
 			settings.percussion = 333;
 
 		//System.out.println(weather.weather);
