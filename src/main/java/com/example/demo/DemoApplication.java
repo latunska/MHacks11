@@ -32,9 +32,14 @@ public class DemoApplication {
     return sounder.getMusicLink(sounder.getMusicSettings(weather.getWeatherList().get(0)));
   }
   @GetMapping("/WeatherJson")
-  public Weather getWeatherInfo(){
+  public Weather getWeatherInfo(@RequestParam("zip") String zipcode){
 	RestTemplate restTemplate = new RestTemplate();
-	Weather weather = restTemplate.getForObject("http://api.openweathermap.org/data/2.5/forecast?zip=48340&APPID=cf32c0bcc723a965df94aeb04388c1ee", Weather.class);
+	Weather weather;
+	if(zipcode.isEmpty())
+	  weather = restTemplate.getForObject("http://api.openweathermap.org/data/2.5/forecast?zip=48340&APPID=cf32c0bcc723a965df94aeb04388c1ee", Weather.class);
+	else
+	  weather = restTemplate.getForObject("http://api.openweathermap.org/data/2.5/forecast?zip="+zipcode+"&APPID=cf32c0bcc723a965df94aeb04388c1ee", Weather.class);
+
 	return weather;
   }
 }
