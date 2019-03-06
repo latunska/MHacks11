@@ -1,0 +1,12 @@
+com/example/demo/WeatherMain.class
+com/example/demo/Weather.class
+com/example/demo/WeatherCloud.class
+com/example/demo/WeatherWind.class
+com/example/demo/WeatherList.class
+com/example/demo/ServletInitializer.class
+com/example/demo/DemoApplication.class
+com/example/demo/MyService.class
+com/example/demo/Sounder.class
+com/example/demo/WeatherRain.class
+com/example/demo/MusicSettings.class
+com/example/demo/WeatherWeather.class
